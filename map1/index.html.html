@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+        <link rel="stylesheet" type="text/css" href="./style.css" />
+        <script src="./index.js"></script>
+    </head>
+    <body>
+        <div class='sidebar'>
+            <div class='heading'>
+                <h1>Awe walk locations</h1>
+            </div>
+        <div id="map" class="map"></div>
+        <script>
+            mapboxgl.accessToken = 'pk.eyJ1Ijoic3RlZm5hYmFvIiwiYSI6ImNrenN5NGo5aDc3ZjMyc3R2YTdhZDJ6N2oifQ.OvkQvGEQ5R_mYwejwzwxKQ';
+            const map = new mapboxgl.Map({
+                container: 'map', // container ID
+                style: 'mapbox://styles/mapbox/streets-v11', // style URL
+                center: [-96, 37.8], // starting position
+                zoom: 3 // starting zoom
+            });
+ 
+            // Add geolocate control to the map.
+            map.addControl(
+                new mapboxgl.GeolocateControl({
+                    positionOptions: {
+                        enableHighAccuracy: true
+                    },
+                    // When active the map will receive updates to the device's location as it changes.
+                    trackUserLocation: true,
+                    // Draw an arrow next to the location dot to indicate which direction the device is heading.
+                    showUserHeading: true
+                })
+            );
+            // Create a default Marker and add it to the map.
+            const marker1 = new mapboxgl.Marker()
+                .setLngLat([-110.981056, 32.346013])
+                .addTo(map);
+
+            // Create a default Marker, colored black, rotated 45 degrees.
+            const marker2 = new mapboxgl.Marker({ color: 'black', rotation: 45 })
+                .setLngLat([-110.918834, 32.218593])
+                .addTo(map);
+        </script>
+    </body>
+</html>

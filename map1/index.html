@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+        <link rel="stylesheet" type="text/css" href="./style.css" />
+        <script src="./index.js"></script>
+		<title>Hi</title>
+		<style type="text/css">
+			#tag-cloud{
+				width:1350px;
+				height:400px;
+				margin: 10px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="zzsc-container">
+			<div id='tag-cloud'></div>
+		</div>
+		<div id="map" class="map"></div>
+		<script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+		<script src="js/jquery.svg3dtagcloud.min.js"></script>
+		<iframe src="https://arizona.app.box.com/f/ab4b790690714d46be2c7b3f94a4cb71" height="380" width="480"></iframe>
+		<script src="index.html.html"></script>
+		<script>
+			mapboxgl.accessToken = 'pk.eyJ1Ijoic3RlZm5hYmFvIiwiYSI6ImNrenN5NGo5aDc3ZjMyc3R2YTdhZDJ6N2oifQ.OvkQvGEQ5R_mYwejwzwxKQ';
+            const map = new mapboxgl.Map({
+                container: 'map', // container ID
+                style: 'mapbox://styles/mapbox/streets-v11', // style URL
+                center: [-96, 37.8], // starting position
+                zoom: 3 // starting zoom
+            });
+ 
+            // Add geolocate control to the map.
+            map.addControl(
+                new mapboxgl.GeolocateControl({
+                    positionOptions: {
+                        enableHighAccuracy: true
+                    },
+                    // When active the map will receive updates to the device's location as it changes.
+                    trackUserLocation: true,
+                    // Draw an arrow next to the location dot to indicate which direction the device is heading.
+                    showUserHeading: true
+                })
+            );
+            // Create a default Marker and add it to the map.
+            const marker1 = new mapboxgl.Marker()
+                .setLngLat([-110.981056, 32.346013])
+                .addTo(map);
+
+            // Create a default Marker, colored black, rotated 45 degrees.
+            const marker2 = new mapboxgl.Marker({ color: 'blue', rotation: 90 })
+                .setLngLat([-110.918834, 32.218593])
+                .addTo(map);
+			$( document ).ready( function() {
+				var entries = [ 
+					{ label: 'Back to top', url: '#', target: '_top' },
+					{ label: 'New York time', url: 'https://www.nytimes.com/2020/09/30/well/move/an-awe-walk-might-do-wonders-for-your-well-being.html', target: '_top'},
+					{ label: 'google', url: 'http://www.google.com/', target: '_top' },
+					{ label: 'Awe', url: 'https://www.artscabinet.org/repository/exploring-awe-through-ethnography', target: '_top' },
+					{ label: 'berkeley.edu', url: 'https://ggia.berkeley.edu/practice/awe_walk', target: '_top'},
+					{ label: 'Awe page', url: 'file:///Users/stefanbao/Desktop/web%20awe/jquerybootstrapcpdzmoban/index.html', target: '_top' },
+					{ label: 'UCSF', url:'https://www.ucsf.edu/news/2020/09/418551/awe-walks-boost-emotional-well-being', target:'_top'},
+					{ label: 'GitHub', url: 'https://github.com/', target: '_top' },
+					{ label: 'health.harvard.edu', url: 'https://www.health.harvard.edu/mind-and-mood/awe-walks-inspire-more-joy-less-distress',target:'_top'},
+					{ label: 'Awe.fyi', url:'https://www.awe.fyi/journal/awe-walks-guide-mindful-walking-enchant-life/',target:'_top'},
+					{ label: 'psycnet.apa.org', url:'https://psycnet.apa.org/record/2020-69974-001', target:'_top'},
+					{ label: 'alltrails', url:'https://www.alltrails.com/lists/hike-awe-walk', target:'_top'},
+					{ label: 'teachingtogether', url:'https://teachingtogether.info/	get-outside-and-look-around/',target:'_top'},
+					{ label: 'gostargazing', url:'https://gostargazing.co.uk/events/night-awe-walk-and-stargazing/',target:'_top'},
+					{ label: 'emotion map', url: 'https://barradeau.com/2021/emotions-map/', target: '_top' },
+					{ label: 'Google earth', url: 'https://earth.google.com/web/@28.22827734,-107.6354532,1217.90589396a,12247144.29941297d,35y,0h,0t,0r',target:'_top'},
+					{ label: 'boxupload', url:'',target:'_top'},
+				]
+
+				var settings = {
+					entries: entries,
+					width: 400,
+					height: 400,
+					radius: '80%',
+					radiusMin: 100,
+					bgDraw: true,
+					bgColor: '#494A5F',
+					opacityOver: 1.00,
+					opacityOut: 0.05,
+					opacitySpeed: 6,
+					fov: 400,
+					speed: 0.3,
+					fontFamily: 'Oswald, Arial, sans-serif',
+					fontSize: '15',
+					fontColor: '#fff',
+					fontWeight: 'normal',//bold
+					fontStyle: 'normal',//italic 
+					fontStretch: 'normal',//wider, narrower, ultra-condensed, extra-condensed, condensed, semi-condensed, semi-expanded, expanded, extra-expanded, ultra-expanded
+					fontToUpperCase: true
+				};
+					//var svg3DTagCloud = new SVG3DTagCloud( document.getElementById( 'holder'  ), settings );
+				$( '#tag-cloud' ).svg3DTagCloud( settings );
+			} );
+		</script>
+	</body>
+</html>
